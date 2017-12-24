@@ -46,6 +46,17 @@ public partial class PolynomialBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>onlyMonomial</c>
+	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>realMonomial</c>
 	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
 	/// <para>

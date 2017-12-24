@@ -93,6 +93,25 @@ public partial class PolynomialParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
+	public partial class OnlyMonomialContext : PolynomialContext {
+		public MonomialContext monomial() {
+			return GetRuleContext<MonomialContext>(0);
+		}
+		public OnlyMonomialContext(PolynomialContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.EnterOnlyMonomial(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.ExitOnlyMonomial(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOnlyMonomial(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
 	public partial class MonomialSumContext : PolynomialContext {
 		public MonomialContext[] monomial() {
 			return GetRuleContexts<MonomialContext>();
@@ -126,35 +145,48 @@ public partial class PolynomialParser : Parser {
 		EnterRule(_localctx, 0, RULE_polynomial);
 		int _la;
 		try {
-			_localctx = new MonomialSumContext(_localctx);
-			EnterOuterAlt(_localctx, 1);
-			{
-			{
-			State = 5;
+			State = 17;
 			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			if (_la==SIGN) {
-				{
-				State = 4; Match(SIGN);
-				}
-			}
-
-			State = 7; monomial();
-			}
-			State = 13;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while (_la==SIGN) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,2,Context) ) {
+			case 1:
+				_localctx = new MonomialSumContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
 				{
 				{
-				State = 9; Match(SIGN);
-				State = 10; monomial();
-				}
-				}
-				State = 15;
+				State = 5;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			}
+				if (_la==SIGN) {
+					{
+					State = 4; Match(SIGN);
+					}
+				}
+
+				State = 7; monomial();
+				}
+				State = 13;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				while (_la==SIGN) {
+					{
+					{
+					State = 9; Match(SIGN);
+					State = 10; monomial();
+					}
+					}
+					State = 15;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				}
+				}
+				break;
+			case 2:
+				_localctx = new OnlyMonomialContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 16; monomial();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -225,39 +257,39 @@ public partial class PolynomialParser : Parser {
 		EnterRule(_localctx, 2, RULE_monomial);
 		int _la;
 		try {
-			State = 28;
+			State = 31;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,5,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,6,Context) ) {
 			case 1:
 				_localctx = new RealMonomialContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 17;
+				State = 20;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==NUM) {
 					{
-					State = 16; Match(NUM);
+					State = 19; Match(NUM);
 					}
 				}
 
-				State = 20;
+				State = 23;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__0) {
 					{
-					State = 19; Match(T__0);
+					State = 22; Match(T__0);
 					}
 				}
 
-				State = 22; Match(VAR);
-				State = 25;
+				State = 25; Match(VAR);
+				State = 28;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 23; Match(T__1);
-					State = 24; Match(NUM);
+					State = 26; Match(T__1);
+					State = 27; Match(NUM);
 					}
 				}
 
@@ -267,7 +299,7 @@ public partial class PolynomialParser : Parser {
 				_localctx = new ConstContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 27; Match(NUM);
+				State = 30; Match(NUM);
 				}
 				break;
 			}
@@ -285,35 +317,38 @@ public partial class PolynomialParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\b', '!', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', '\t', 
+		'\x5964', '\x3', '\b', '$', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', '\t', 
 		'\x3', '\x3', '\x2', '\x5', '\x2', '\b', '\n', '\x2', '\x3', '\x2', '\x3', 
 		'\x2', '\x3', '\x2', '\x3', '\x2', '\a', '\x2', '\xE', '\n', '\x2', '\f', 
-		'\x2', '\xE', '\x2', '\x11', '\v', '\x2', '\x3', '\x3', '\x5', '\x3', 
-		'\x14', '\n', '\x3', '\x3', '\x3', '\x5', '\x3', '\x17', '\n', '\x3', 
-		'\x3', '\x3', '\x3', '\x3', '\x3', '\x3', '\x5', '\x3', '\x1C', '\n', 
+		'\x2', '\xE', '\x2', '\x11', '\v', '\x2', '\x3', '\x2', '\x5', '\x2', 
+		'\x14', '\n', '\x2', '\x3', '\x3', '\x5', '\x3', '\x17', '\n', '\x3', 
+		'\x3', '\x3', '\x5', '\x3', '\x1A', '\n', '\x3', '\x3', '\x3', '\x3', 
 		'\x3', '\x3', '\x3', '\x5', '\x3', '\x1F', '\n', '\x3', '\x3', '\x3', 
-		'\x2', '\x2', '\x4', '\x2', '\x4', '\x2', '\x2', '\x2', '$', '\x2', '\a', 
-		'\x3', '\x2', '\x2', '\x2', '\x4', '\x1E', '\x3', '\x2', '\x2', '\x2', 
-		'\x6', '\b', '\a', '\a', '\x2', '\x2', '\a', '\x6', '\x3', '\x2', '\x2', 
-		'\x2', '\a', '\b', '\x3', '\x2', '\x2', '\x2', '\b', '\t', '\x3', '\x2', 
-		'\x2', '\x2', '\t', '\n', '\x5', '\x4', '\x3', '\x2', '\n', '\xF', '\x3', 
-		'\x2', '\x2', '\x2', '\v', '\f', '\a', '\a', '\x2', '\x2', '\f', '\xE', 
-		'\x5', '\x4', '\x3', '\x2', '\r', '\v', '\x3', '\x2', '\x2', '\x2', '\xE', 
-		'\x11', '\x3', '\x2', '\x2', '\x2', '\xF', '\r', '\x3', '\x2', '\x2', 
-		'\x2', '\xF', '\x10', '\x3', '\x2', '\x2', '\x2', '\x10', '\x3', '\x3', 
-		'\x2', '\x2', '\x2', '\x11', '\xF', '\x3', '\x2', '\x2', '\x2', '\x12', 
-		'\x14', '\a', '\x5', '\x2', '\x2', '\x13', '\x12', '\x3', '\x2', '\x2', 
-		'\x2', '\x13', '\x14', '\x3', '\x2', '\x2', '\x2', '\x14', '\x16', '\x3', 
-		'\x2', '\x2', '\x2', '\x15', '\x17', '\a', '\x3', '\x2', '\x2', '\x16', 
-		'\x15', '\x3', '\x2', '\x2', '\x2', '\x16', '\x17', '\x3', '\x2', '\x2', 
-		'\x2', '\x17', '\x18', '\x3', '\x2', '\x2', '\x2', '\x18', '\x1B', '\a', 
-		'\x6', '\x2', '\x2', '\x19', '\x1A', '\a', '\x4', '\x2', '\x2', '\x1A', 
-		'\x1C', '\a', '\x5', '\x2', '\x2', '\x1B', '\x19', '\x3', '\x2', '\x2', 
-		'\x2', '\x1B', '\x1C', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x1F', '\x3', 
-		'\x2', '\x2', '\x2', '\x1D', '\x1F', '\a', '\x5', '\x2', '\x2', '\x1E', 
-		'\x13', '\x3', '\x2', '\x2', '\x2', '\x1E', '\x1D', '\x3', '\x2', '\x2', 
-		'\x2', '\x1F', '\x5', '\x3', '\x2', '\x2', '\x2', '\b', '\a', '\xF', '\x13', 
-		'\x16', '\x1B', '\x1E',
+		'\x5', '\x3', '\"', '\n', '\x3', '\x3', '\x3', '\x2', '\x2', '\x4', '\x2', 
+		'\x4', '\x2', '\x2', '\x2', '(', '\x2', '\x13', '\x3', '\x2', '\x2', '\x2', 
+		'\x4', '!', '\x3', '\x2', '\x2', '\x2', '\x6', '\b', '\a', '\a', '\x2', 
+		'\x2', '\a', '\x6', '\x3', '\x2', '\x2', '\x2', '\a', '\b', '\x3', '\x2', 
+		'\x2', '\x2', '\b', '\t', '\x3', '\x2', '\x2', '\x2', '\t', '\n', '\x5', 
+		'\x4', '\x3', '\x2', '\n', '\xF', '\x3', '\x2', '\x2', '\x2', '\v', '\f', 
+		'\a', '\a', '\x2', '\x2', '\f', '\xE', '\x5', '\x4', '\x3', '\x2', '\r', 
+		'\v', '\x3', '\x2', '\x2', '\x2', '\xE', '\x11', '\x3', '\x2', '\x2', 
+		'\x2', '\xF', '\r', '\x3', '\x2', '\x2', '\x2', '\xF', '\x10', '\x3', 
+		'\x2', '\x2', '\x2', '\x10', '\x14', '\x3', '\x2', '\x2', '\x2', '\x11', 
+		'\xF', '\x3', '\x2', '\x2', '\x2', '\x12', '\x14', '\x5', '\x4', '\x3', 
+		'\x2', '\x13', '\a', '\x3', '\x2', '\x2', '\x2', '\x13', '\x12', '\x3', 
+		'\x2', '\x2', '\x2', '\x14', '\x3', '\x3', '\x2', '\x2', '\x2', '\x15', 
+		'\x17', '\a', '\x5', '\x2', '\x2', '\x16', '\x15', '\x3', '\x2', '\x2', 
+		'\x2', '\x16', '\x17', '\x3', '\x2', '\x2', '\x2', '\x17', '\x19', '\x3', 
+		'\x2', '\x2', '\x2', '\x18', '\x1A', '\a', '\x3', '\x2', '\x2', '\x19', 
+		'\x18', '\x3', '\x2', '\x2', '\x2', '\x19', '\x1A', '\x3', '\x2', '\x2', 
+		'\x2', '\x1A', '\x1B', '\x3', '\x2', '\x2', '\x2', '\x1B', '\x1E', '\a', 
+		'\x6', '\x2', '\x2', '\x1C', '\x1D', '\a', '\x4', '\x2', '\x2', '\x1D', 
+		'\x1F', '\a', '\x5', '\x2', '\x2', '\x1E', '\x1C', '\x3', '\x2', '\x2', 
+		'\x2', '\x1E', '\x1F', '\x3', '\x2', '\x2', '\x2', '\x1F', '\"', '\x3', 
+		'\x2', '\x2', '\x2', ' ', '\"', '\a', '\x5', '\x2', '\x2', '!', '\x16', 
+		'\x3', '\x2', '\x2', '\x2', '!', ' ', '\x3', '\x2', '\x2', '\x2', '\"', 
+		'\x5', '\x3', '\x2', '\x2', '\x2', '\t', '\a', '\xF', '\x13', '\x16', 
+		'\x19', '\x1E', '!',
 	};
 
 	public static readonly ATN _ATN =

@@ -44,6 +44,18 @@ public interface IPolynomialListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>onlyMonomial</c>
+	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>onlyMonomial</c>
+	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>realMonomial</c>
 	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
 	/// </summary>

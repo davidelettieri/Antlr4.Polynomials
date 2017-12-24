@@ -65,8 +65,4 @@
     <None Include="Polynomial\PolynomialLexer.tokens" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>echo cd $(ProjectDir)Polynomial
-echo antlr4 -visitor Polynomial.g4 -package Antlr4.Polynomial</PreBuildEvent>
-  </PropertyGroup>
 </Project>

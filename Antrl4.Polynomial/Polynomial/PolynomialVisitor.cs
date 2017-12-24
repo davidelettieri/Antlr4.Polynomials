@@ -40,6 +40,13 @@ public interface IPolynomialVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>onlyMonomial</c>
+	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>realMonomial</c>
 	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
 	/// </summary>
