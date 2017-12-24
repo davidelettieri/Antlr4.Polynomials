@@ -19,7 +19,6 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace Antlr4.Polynomial {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -61,4 +60,3 @@ public interface IPolynomialVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConst([NotNull] PolynomialParser.ConstContext context);
 }
-} // namespace Antlr4.Polynomial

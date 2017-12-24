@@ -58,19 +58,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Polynomial\.antlr\Polinomi.interp" />
-    <None Include="Polynomial\.antlr\Polinomi.tokens" />
-    <None Include="Polynomial\.antlr\PolinomiLexer.interp" />
-    <None Include="Polynomial\.antlr\PolinomiLexer.tokens" />
     <None Include="Polynomial\Polynomial.g4" />
     <None Include="Polynomial\Polynomial.interp" />
     <None Include="Polynomial\Polynomial.tokens" />
     <None Include="Polynomial\PolynomialLexer.interp" />
     <None Include="Polynomial\PolynomialLexer.tokens" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Polynomial\.antlr\PolinomiLexer.java" />
-    <Content Include="Polynomial\.antlr\PolinomiParser.java" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
