@@ -50,20 +50,6 @@ public partial class PolynomialBaseListener : IPolynomialListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>onlyMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>onlyMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOnlyMonomial([NotNull] PolynomialParser.OnlyMonomialContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>realMonomial</c>
 	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
 	/// <para>The default implementation does nothing.</para>

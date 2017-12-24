@@ -1,8 +1,7 @@
 grammar Polynomial;
 
-polynomial      : (SIGN? monomial)(SIGN monomial)*				#monomialSum 
-                | monomial										#onlyMonomial;
-monomial         : NUM? '*'? VAR ('^' NUM)?						#realMonomial
+polynomial      : (SIGN? monomial)(SIGN monomial)*				#monomialSum;
+monomial        : NUM? '*'? VAR ('^' NUM)?						#realMonomial
 				| NUM											#const;
 
 NUM             : [0-9]+;
