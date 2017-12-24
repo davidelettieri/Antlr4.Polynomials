@@ -22,6 +22,7 @@ namespace Antrl4.Polinomi.Tests
         [DataRow("x^5+x^1+1", 2, 35)]
         [DataRow("1", 2, 1)]
         [DataRow("1", 3, 1)]
+        [DataRow("x^3", 3, 27)]
         [DataTestMethod]
         public void TestValutazionePolinomio(string poli, double x, double result)
         {
