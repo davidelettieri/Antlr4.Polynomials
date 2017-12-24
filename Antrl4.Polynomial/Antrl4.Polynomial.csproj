@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1DB166B0-1924-465A-BF33-2668E0D6EA92}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Antrl4</RootNamespace>
-    <AssemblyName>Antrl4</AssemblyName>
+    <RootNamespace>Antrl4.Polynomial</RootNamespace>
+    <AssemblyName>Antrl4.Polynomial</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

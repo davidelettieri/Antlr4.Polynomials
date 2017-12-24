@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Antrl4.Polinomi.Tests
+namespace Antrl4.Polynomial.Tests
 {
     [TestClass]
     public class Polynomial
