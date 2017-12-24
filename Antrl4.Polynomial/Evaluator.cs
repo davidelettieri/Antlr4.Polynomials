@@ -42,10 +42,6 @@ namespace Antrl4
 
         class VisitorImpl : PolynomialBaseVisitor<Func<double, double>>
         {
-            public override Func<double, double> VisitOnlyMonomial(PolynomialParser.OnlyMonomialContext context)
-            {
-                return Visit(context.monomial());
-            }
             public override Func<double, double> VisitConst(PolynomialParser.ConstContext context)
             {
                 var val = double.Parse(context.NUM().GetText());
