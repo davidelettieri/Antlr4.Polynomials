@@ -19,6 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+namespace Antlr4.Polynomial {
 using System;
 using System.IO;
 using System.Text;
@@ -126,3 +127,4 @@ public partial class PolynomialLexer : Lexer {
 
 
 }
+} // namespace Antlr4.Polynomial
