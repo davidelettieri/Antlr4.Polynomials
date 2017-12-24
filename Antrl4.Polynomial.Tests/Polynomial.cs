@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Antrl4.Polinomi.Tests
 {
     [TestClass]
-    public class TestPolinomi
+    public class Polynomial
     {
         [DataRow("x^10", 0, 0)]
         [DataRow("x^10", 1, 1)]

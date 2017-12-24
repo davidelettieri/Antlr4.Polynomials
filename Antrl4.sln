@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial", "Antrl4\Antrl4.Polynomial.csproj", "{1DB166B0-1924-465A-BF33-2668E0D6EA92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial", "Antrl4.Polynomial\Antrl4.Polynomial.csproj", "{1DB166B0-1924-465A-BF33-2668E0D6EA92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial.Tests", "Antrl4.Polinomi.Tests\Antrl4.Polynomial.Tests.csproj", "{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial.Tests", "Antrl4.Polynomial.Tests\Antrl4.Polynomial.Tests.csproj", "{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
