@@ -13,8 +13,6 @@ namespace Antrl4
     public class Evaluator
     {
         private Func<double, double> PolynomialFunc;
-        private static readonly Func<double, double, double> add = (i, j) => i + j;
-        private static readonly Func<double, double, double> subtract = (i, j) => i - j;
 
         public Evaluator(string polynomial)
         {
@@ -42,6 +40,9 @@ namespace Antrl4
 
         class VisitorImpl : PolynomialBaseVisitor<Func<double, double>>
         {
+            private static readonly Func<double, double, double> add = (i, j) => i + j;
+            private static readonly Func<double, double, double> subtract = (i, j) => i - j;
+
             public override Func<double, double> VisitConst(PolynomialParser.ConstContext context)
             {
                 var val = double.Parse(context.NUM().GetText());
