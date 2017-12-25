@@ -8,7 +8,7 @@ using Antlr4.Runtime.Tree;
 using Antlr4.Runtime;
 using Antlr4.Polynomial;
 
-namespace Antrl4
+namespace Antrl4.Polynomial
 {
     public class Evaluator
     {
