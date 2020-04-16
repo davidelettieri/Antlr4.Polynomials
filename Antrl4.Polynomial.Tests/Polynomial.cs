@@ -6,7 +6,7 @@ namespace Antrl4.Polynomial.Tests
 {
     public class Polynomial
     {
-        [Theory]
+        [Theory(DisplayName = "Test evaluation of polynomial with only one variable")]
         [InlineData("1", 2, 1)]
         [InlineData("1", 3, 1)]
         [InlineData("x^3", 3, 27)]
@@ -36,13 +36,23 @@ namespace Antrl4.Polynomial.Tests
             Assert.Equal(result, evaluator.Eval(d));
         }
 
-        [Theory]
+        [Theory(DisplayName = "Test evaluation of polynomial with two variables")]
         [InlineData("xy", 2, 1, 2)]
         [InlineData("xy+x^2y^2", 2, 2, 20)]
         [InlineData("xy+x^2y^2-10", 2, 2, 10)]
         [InlineData("xy+x^2y^2-x-2y-1", 2, 2, 13)]
         [InlineData("-xy+x^2y^2-x-2y-1", 2, 2, 5)]
         public void TestEvaluationXY(string poli, double x, double y, double result)
+        {
+            var evaluator = new Evaluator(poli);
+            var d = new Dictionary<char, double>() { { 'x', x }, { 'y', y } };
+            Assert.Equal(result, evaluator.Eval(d));
+        }
+
+        [Theory(DisplayName = "Test evaluation of polynomial with polynomial exponent")]
+        [InlineData("x^y", 2, 3, 8)]
+        [InlineData("x^(x+y)", 2, 2, 16)]
+        public void Test(string poli, double x, double y, double result)
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x }, { 'y', y } };
