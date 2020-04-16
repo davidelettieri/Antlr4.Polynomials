@@ -29,7 +29,7 @@ namespace Antrl4.Polynomial.Tests
         [InlineData("-x^2-x^1-1", 2, -7)]
         [InlineData("-x^2-x^1+1", 2, -5)]
         [InlineData("x^2-x^1+1", 2, 3)]
-        public void TestValutazionePolinomioUnicaVariabile(string poli, double x, double result)
+        public void TestEvaluationOnlyX(string poli, double x, double result)
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x } };
@@ -41,7 +41,8 @@ namespace Antrl4.Polynomial.Tests
         [InlineData("xy+x^2y^2", 2, 2, 20)]
         [InlineData("xy+x^2y^2-10", 2, 2, 10)]
         [InlineData("xy+x^2y^2-x-2y-1", 2, 2, 13)]
-        public void TestValutazionePolinomioDueVariabili(string poli, double x, double y, double result)
+        [InlineData("-xy+x^2y^2-x-2y-1", 2, 2, 5)]
+        public void TestEvaluationXY(string poli, double x, double y, double result)
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x }, { 'y', y } };
