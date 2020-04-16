@@ -34,7 +34,7 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class PolynomialBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IPolynomialVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by the <c>add</c>
+	/// Visit a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -43,7 +43,7 @@ public partial class PolynomialBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAdd([NotNull] PolynomialParser.AddContext context) { return VisitChildren(context); }
+	public virtual Result VisitPlusminus([NotNull] PolynomialParser.PlusminusContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>prod</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
@@ -78,7 +78,7 @@ public partial class PolynomialBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitVar([NotNull] PolynomialParser.VarContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>subtract</c>
+	/// Visit a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -87,7 +87,7 @@ public partial class PolynomialBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSubtract([NotNull] PolynomialParser.SubtractContext context) { return VisitChildren(context); }
+	public virtual Result VisitParenExp([NotNull] PolynomialParser.ParenExpContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>power</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.

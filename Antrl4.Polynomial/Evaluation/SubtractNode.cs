@@ -12,5 +12,11 @@ namespace Antrl4.Polynomial.Evaluation
             _right = right;
         }
         public double Eval(Dictionary<char, double> variablesValue) => _left.Eval(variablesValue) - _right.Eval(variablesValue);
+
+
+        public override string ToString()
+        {
+            return $"Subtract({_left},{_right})";
+        }
     }
 }

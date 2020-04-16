@@ -9,7 +9,7 @@ namespace Antrl4.Polynomial.Evaluation
 {
     public class VariableNode : INode
     {
-        private char _var;
+        private readonly char _var;
 
         public VariableNode(char variable)
         {
@@ -21,6 +21,11 @@ namespace Antrl4.Polynomial.Evaluation
                 return value;
 
             throw new InvalidOperationException($"Value for variable {_var} is not present in dictionary {nameof(variablesValue)}");
+        }
+
+        public override string ToString()
+        {
+            return $"{_var}";
         }
     }
 }

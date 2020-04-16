@@ -10,5 +10,11 @@ namespace Antrl4.Polynomial.Evaluation
             _value = value;
         }
         public double Eval(Dictionary<char, double> _) => _value;
+
+
+        public override string ToString()
+        {
+            return $"{_value}";
+        }
     }
 }

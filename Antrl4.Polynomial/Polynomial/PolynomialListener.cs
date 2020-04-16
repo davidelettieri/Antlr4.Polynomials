@@ -31,17 +31,17 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPolynomialListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by the <c>add</c>
+	/// Enter a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAdd([NotNull] PolynomialParser.AddContext context);
+	void EnterPlusminus([NotNull] PolynomialParser.PlusminusContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>add</c>
+	/// Exit a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAdd([NotNull] PolynomialParser.AddContext context);
+	void ExitPlusminus([NotNull] PolynomialParser.PlusminusContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>prod</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
@@ -79,17 +79,17 @@ public interface IPolynomialListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVar([NotNull] PolynomialParser.VarContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>subtract</c>
+	/// Enter a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterSubtract([NotNull] PolynomialParser.SubtractContext context);
+	void EnterParenExp([NotNull] PolynomialParser.ParenExpContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>subtract</c>
+	/// Exit a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitSubtract([NotNull] PolynomialParser.SubtractContext context);
+	void ExitParenExp([NotNull] PolynomialParser.ParenExpContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>power</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.

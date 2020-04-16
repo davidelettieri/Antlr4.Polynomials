@@ -17,5 +17,10 @@ namespace Antrl4.Polynomial.Evaluation
         {
             return Math.Pow(_base.Eval(variablesValue), _power.Eval(variablesValue));
         }
+
+        public override string ToString()
+        {
+            return $"Pow({_base},{_power})";
+        }
     }
 }

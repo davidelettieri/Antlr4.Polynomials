@@ -1,7 +1,6 @@
 ﻿using Antrl4.Polynomial.Evaluation;
 using System.Collections.Generic;
 using Xunit;
-using static Antrl4.Polynomial.Evaluation.Evaluator;
 
 namespace Antrl4.Polynomial.Tests
 {

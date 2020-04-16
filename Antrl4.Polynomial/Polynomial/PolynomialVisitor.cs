@@ -32,12 +32,12 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPolynomialVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by the <c>add</c>
+	/// Visit a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAdd([NotNull] PolynomialParser.AddContext context);
+	Result VisitPlusminus([NotNull] PolynomialParser.PlusminusContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>prod</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
@@ -60,12 +60,12 @@ public interface IPolynomialVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVar([NotNull] PolynomialParser.VarContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>subtract</c>
+	/// Visit a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSubtract([NotNull] PolynomialParser.SubtractContext context);
+	Result VisitParenExp([NotNull] PolynomialParser.ParenExpContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>power</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.

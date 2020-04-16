@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime;
 using Antrl4.Polynomial.Evaluation;
-using static Antrl4.Polynomial.Evaluation.Evaluator;
 
 namespace Antrl4.Polynomial
 {
     public class Evaluator
     {
-        private INode _expr;
+        private readonly INode _expr;
 
         public Evaluator(string polynomial)
         {
+            if (string.IsNullOrWhiteSpace(polynomial))
+                throw new ArgumentException($"{nameof(polynomial)} cannot be null or empty");
+
+            if (polynomial.StartsWith('-'))
+                polynomial = "0" + polynomial;
+
             var inputStream = new AntlrInputStream(polynomial);
             var lexer = new PolynomialLexer(inputStream);
             var commonTokenStream = new CommonTokenStream(lexer);
@@ -24,17 +29,20 @@ namespace Antrl4.Polynomial
             _expr = visitor.Visit(context);
         }
 
-        public double Eval(Dictionary<char,double> values)
+        public double Eval(Dictionary<char, double> values)
         {
             return _expr.Eval(values);
         }
 
         class VisitorImpl : PolynomialBaseVisitor<INode>
         {
-            public override INode VisitAdd([NotNull] PolynomialParser.AddContext context)
+            public override INode VisitPlusminus([NotNull] PolynomialParser.PlusminusContext context)
             {
                 var left = context.expr()[0];
                 var right = context.expr()[1];
+
+                if (context.MINUS() != null)
+                    return new SubtractNode(Visit(left), Visit(right));
 
                 return new AddNode(Visit(left), Visit(right));
             }
@@ -44,6 +52,11 @@ namespace Antrl4.Polynomial
                 var c = context.GetText();
 
                 return new ConstNode(Convert.ToDouble(c));
+            }
+
+            public override INode VisitParenExp([NotNull] PolynomialParser.ParenExpContext context)
+            {
+                return Visit(context.expr());
             }
 
             public override INode VisitPower([NotNull] PolynomialParser.PowerContext context)
@@ -60,14 +73,6 @@ namespace Antrl4.Polynomial
                 var right = context.expr()[1];
 
                 return new ProductNode(Visit(left), Visit(right));
-            }
-
-            public override INode VisitSubtract([NotNull] PolynomialParser.SubtractContext context)
-            {
-                var left = context.expr()[0];
-                var right = context.expr()[1];
-
-                return new SubtractNode(Visit(left), Visit(right));
             }
 
             public override INode VisitVar([NotNull] PolynomialParser.VarContext context)

@@ -1,18 +1,18 @@
 grammar Polynomial;
 
-expr			: expr PLUS expr					#add
-				| expr MINUS expr					#subtract
-				| expr PROD? expr					#prod
-				| expr POWER OP? expr CP?			#power
-				| VAR								#var
-				| NUM								#const;
+expr			: OP expr CP								#parenExp
+				| <assoc=right> expr POWER expr				#power
+				| expr PROD? expr							#prod
+				| expr (PLUS|MINUS) expr					#plusminus
+				| VAR										#var
+				| NUM										#const;
 
 CP				: ')';
 OP				: '(';
-NUM             : [0-9]+;
-VAR             : [a-z];
 PLUS            : '+';
 MINUS			: '-';
 PROD			: '*';
 POWER			: '^';
+NUM             : [0-9]+;
+VAR             : [a-z];
 WS              : ' ' -> skip;

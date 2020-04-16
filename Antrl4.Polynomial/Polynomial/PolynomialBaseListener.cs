@@ -35,19 +35,19 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class PolynomialBaseListener : IPolynomialListener {
 	/// <summary>
-	/// Enter a parse tree produced by the <c>add</c>
+	/// Enter a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAdd([NotNull] PolynomialParser.AddContext context) { }
+	public virtual void EnterPlusminus([NotNull] PolynomialParser.PlusminusContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>add</c>
+	/// Exit a parse tree produced by the <c>plusminus</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAdd([NotNull] PolynomialParser.AddContext context) { }
+	public virtual void ExitPlusminus([NotNull] PolynomialParser.PlusminusContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>prod</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
@@ -91,19 +91,19 @@ public partial class PolynomialBaseListener : IPolynomialListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVar([NotNull] PolynomialParser.VarContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>subtract</c>
+	/// Enter a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSubtract([NotNull] PolynomialParser.SubtractContext context) { }
+	public virtual void EnterParenExp([NotNull] PolynomialParser.ParenExpContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>subtract</c>
+	/// Exit a parse tree produced by the <c>parenExp</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSubtract([NotNull] PolynomialParser.SubtractContext context) { }
+	public virtual void ExitParenExp([NotNull] PolynomialParser.ParenExpContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>power</c>
 	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
