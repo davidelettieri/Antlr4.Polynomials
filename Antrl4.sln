@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial", "Antrl4.Polynomial\Antrl4.Polynomial.csproj", "{1DB166B0-1924-465A-BF33-2668E0D6EA92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial.Tests", "Antrl4.Polynomial.Tests\Antrl4.Polynomial.Tests.csproj", "{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antrl4.Polynomial.Tests", "Antrl4.Polynomial.Tests\Antrl4.Polynomial.Tests.csproj", "{863F1687-CB8B-47CD-8329-202796F4AE71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1DB166B0-1924-465A-BF33-2668E0D6EA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DB166B0-1924-465A-BF33-2668E0D6EA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DB166B0-1924-465A-BF33-2668E0D6EA92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4906B5E-2CD9-4C36-B714-58215FDDC2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{863F1687-CB8B-47CD-8329-202796F4AE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{863F1687-CB8B-47CD-8329-202796F4AE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{863F1687-CB8B-47CD-8329-202796F4AE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{863F1687-CB8B-47CD-8329-202796F4AE71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
