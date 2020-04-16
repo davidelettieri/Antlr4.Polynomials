@@ -31,49 +31,75 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPolynomialListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by the <c>monomialSum</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// Enter a parse tree produced by the <c>add</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMonomialSum([NotNull] PolynomialParser.MonomialSumContext context);
+	void EnterAdd([NotNull] PolynomialParser.AddContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>monomialSum</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// Exit a parse tree produced by the <c>add</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context);
+	void ExitAdd([NotNull] PolynomialParser.AddContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>realMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// Enter a parse tree produced by the <c>prod</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterRealMonomial([NotNull] PolynomialParser.RealMonomialContext context);
+	void EnterProd([NotNull] PolynomialParser.ProdContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>realMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// Exit a parse tree produced by the <c>prod</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitRealMonomial([NotNull] PolynomialParser.RealMonomialContext context);
+	void ExitProd([NotNull] PolynomialParser.ProdContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>const</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterConst([NotNull] PolynomialParser.ConstContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>const</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitConst([NotNull] PolynomialParser.ConstContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PolynomialParser.monom"/>.
+	/// Enter a parse tree produced by the <c>var</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMonom([NotNull] PolynomialParser.MonomContext context);
+	void EnterVar([NotNull] PolynomialParser.VarContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PolynomialParser.monom"/>.
+	/// Exit a parse tree produced by the <c>var</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMonom([NotNull] PolynomialParser.MonomContext context);
+	void ExitVar([NotNull] PolynomialParser.VarContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>subtract</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSubtract([NotNull] PolynomialParser.SubtractContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>subtract</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSubtract([NotNull] PolynomialParser.SubtractContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>power</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPower([NotNull] PolynomialParser.PowerContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>power</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPower([NotNull] PolynomialParser.PowerContext context);
 }

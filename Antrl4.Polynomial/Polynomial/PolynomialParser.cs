@@ -36,18 +36,18 @@ public partial class PolynomialParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, NUM=2, VAR=3, SIGN=4, POWER=5, WS=6;
+		CP=1, OP=2, NUM=3, VAR=4, PLUS=5, MINUS=6, PROD=7, POWER=8, WS=9;
 	public const int
-		RULE_polynomial = 0, RULE_monomial = 1, RULE_monom = 2;
+		RULE_expr = 0;
 	public static readonly string[] ruleNames = {
-		"polynomial", "monomial", "monom"
+		"expr"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'*'", null, null, null, "'^'", "' '"
+		null, "')'", "'('", null, null, "'+'", "'-'", "'*'", "'^'", "' '"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, "NUM", "VAR", "SIGN", "POWER", "WS"
+		null, "CP", "OP", "NUM", "VAR", "PLUS", "MINUS", "PROD", "POWER", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -81,136 +81,67 @@ public partial class PolynomialParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	public partial class PolynomialContext : ParserRuleContext {
-		public PolynomialContext(ParserRuleContext parent, int invokingState)
+	public partial class ExprContext : ParserRuleContext {
+		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_polynomial; } }
+		public override int RuleIndex { get { return RULE_expr; } }
 	 
-		public PolynomialContext() { }
-		public virtual void CopyFrom(PolynomialContext context) {
+		public ExprContext() { }
+		public virtual void CopyFrom(ExprContext context) {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class MonomialSumContext : PolynomialContext {
-		public MonomialContext[] monomial() {
-			return GetRuleContexts<MonomialContext>();
+	public partial class AddContext : ExprContext {
+		public ExprContext[] expr() {
+			return GetRuleContexts<ExprContext>();
 		}
-		public MonomialContext monomial(int i) {
-			return GetRuleContext<MonomialContext>(i);
+		public ExprContext expr(int i) {
+			return GetRuleContext<ExprContext>(i);
 		}
-		public ITerminalNode[] SIGN() { return GetTokens(PolynomialParser.SIGN); }
-		public ITerminalNode SIGN(int i) {
-			return GetToken(PolynomialParser.SIGN, i);
-		}
-		public MonomialSumContext(PolynomialContext context) { CopyFrom(context); }
+		public ITerminalNode PLUS() { return GetToken(PolynomialParser.PLUS, 0); }
+		public AddContext(ExprContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.EnterMonomialSum(this);
+			if (typedListener != null) typedListener.EnterAdd(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.ExitMonomialSum(this);
+			if (typedListener != null) typedListener.ExitAdd(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMonomialSum(this);
+			if (typedVisitor != null) return typedVisitor.VisitAdd(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-
-	[RuleVersion(0)]
-	public PolynomialContext polynomial() {
-		PolynomialContext _localctx = new PolynomialContext(Context, State);
-		EnterRule(_localctx, 0, RULE_polynomial);
-		int _la;
-		try {
-			_localctx = new MonomialSumContext(_localctx);
-			EnterOuterAlt(_localctx, 1);
-			{
-			{
-			State = 7;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			if (_la==SIGN) {
-				{
-				State = 6; Match(SIGN);
-				}
-			}
-
-			State = 9; monomial();
-			}
-			State = 15;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while (_la==SIGN) {
-				{
-				{
-				State = 11; Match(SIGN);
-				State = 12; monomial();
-				}
-				}
-				State = 17;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			}
-			}
+	public partial class ProdContext : ExprContext {
+		public ExprContext[] expr() {
+			return GetRuleContexts<ExprContext>();
 		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
+		public ExprContext expr(int i) {
+			return GetRuleContext<ExprContext>(i);
 		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class MonomialContext : ParserRuleContext {
-		public MonomialContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_monomial; } }
-	 
-		public MonomialContext() { }
-		public virtual void CopyFrom(MonomialContext context) {
-			base.CopyFrom(context);
-		}
-	}
-	public partial class RealMonomialContext : MonomialContext {
-		public ITerminalNode[] NUM() { return GetTokens(PolynomialParser.NUM); }
-		public ITerminalNode NUM(int i) {
-			return GetToken(PolynomialParser.NUM, i);
-		}
-		public ITerminalNode[] VAR() { return GetTokens(PolynomialParser.VAR); }
-		public ITerminalNode VAR(int i) {
-			return GetToken(PolynomialParser.VAR, i);
-		}
-		public ITerminalNode[] POWER() { return GetTokens(PolynomialParser.POWER); }
-		public ITerminalNode POWER(int i) {
-			return GetToken(PolynomialParser.POWER, i);
-		}
-		public RealMonomialContext(MonomialContext context) { CopyFrom(context); }
+		public ITerminalNode PROD() { return GetToken(PolynomialParser.PROD, 0); }
+		public ProdContext(ExprContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.EnterRealMonomial(this);
+			if (typedListener != null) typedListener.EnterProd(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.ExitRealMonomial(this);
+			if (typedListener != null) typedListener.ExitProd(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRealMonomial(this);
+			if (typedVisitor != null) return typedVisitor.VisitProd(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class ConstContext : MonomialContext {
+	public partial class ConstContext : ExprContext {
 		public ITerminalNode NUM() { return GetToken(PolynomialParser.NUM, 0); }
-		public ConstContext(MonomialContext context) { CopyFrom(context); }
+		public ConstContext(ExprContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
 			if (typedListener != null) typedListener.EnterConst(this);
@@ -225,147 +156,198 @@ public partial class PolynomialParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-
-	[RuleVersion(0)]
-	public MonomialContext monomial() {
-		MonomialContext _localctx = new MonomialContext(Context, State);
-		EnterRule(_localctx, 2, RULE_monomial);
-		int _la;
-		try {
-			State = 34;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,6,Context) ) {
-			case 1:
-				_localctx = new RealMonomialContext(_localctx);
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 19;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				if (_la==NUM) {
-					{
-					State = 18; Match(NUM);
-					}
-				}
-
-				State = 22;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				if (_la==T__0) {
-					{
-					State = 21; Match(T__0);
-					}
-				}
-
-				State = 29;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				do {
-					{
-					{
-					State = 24; Match(VAR);
-					State = 27;
-					ErrorHandler.Sync(this);
-					_la = TokenStream.LA(1);
-					if (_la==POWER) {
-						{
-						State = 25; Match(POWER);
-						State = 26; Match(NUM);
-						}
-					}
-
-					}
-					}
-					State = 31;
-					ErrorHandler.Sync(this);
-					_la = TokenStream.LA(1);
-				} while ( _la==VAR );
-				}
-				break;
-			case 2:
-				_localctx = new ConstContext(_localctx);
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 33; Match(NUM);
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class MonomContext : ParserRuleContext {
-		public ITerminalNode[] VAR() { return GetTokens(PolynomialParser.VAR); }
-		public ITerminalNode VAR(int i) {
-			return GetToken(PolynomialParser.VAR, i);
-		}
-		public ITerminalNode[] POWER() { return GetTokens(PolynomialParser.POWER); }
-		public ITerminalNode POWER(int i) {
-			return GetToken(PolynomialParser.POWER, i);
-		}
-		public ITerminalNode[] NUM() { return GetTokens(PolynomialParser.NUM); }
-		public ITerminalNode NUM(int i) {
-			return GetToken(PolynomialParser.NUM, i);
-		}
-		public MonomContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_monom; } }
+	public partial class VarContext : ExprContext {
+		public ITerminalNode VAR() { return GetToken(PolynomialParser.VAR, 0); }
+		public VarContext(ExprContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.EnterMonom(this);
+			if (typedListener != null) typedListener.EnterVar(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IPolynomialListener typedListener = listener as IPolynomialListener;
-			if (typedListener != null) typedListener.ExitMonom(this);
+			if (typedListener != null) typedListener.ExitVar(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMonom(this);
+			if (typedVisitor != null) return typedVisitor.VisitVar(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class SubtractContext : ExprContext {
+		public ExprContext[] expr() {
+			return GetRuleContexts<ExprContext>();
+		}
+		public ExprContext expr(int i) {
+			return GetRuleContext<ExprContext>(i);
+		}
+		public ITerminalNode MINUS() { return GetToken(PolynomialParser.MINUS, 0); }
+		public SubtractContext(ExprContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.EnterSubtract(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.ExitSubtract(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSubtract(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PowerContext : ExprContext {
+		public ExprContext[] expr() {
+			return GetRuleContexts<ExprContext>();
+		}
+		public ExprContext expr(int i) {
+			return GetRuleContext<ExprContext>(i);
+		}
+		public ITerminalNode POWER() { return GetToken(PolynomialParser.POWER, 0); }
+		public ITerminalNode OP() { return GetToken(PolynomialParser.OP, 0); }
+		public ITerminalNode CP() { return GetToken(PolynomialParser.CP, 0); }
+		public PowerContext(ExprContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.EnterPower(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IPolynomialListener typedListener = listener as IPolynomialListener;
+			if (typedListener != null) typedListener.ExitPower(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPolynomialVisitor<TResult> typedVisitor = visitor as IPolynomialVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPower(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public MonomContext monom() {
-		MonomContext _localctx = new MonomContext(Context, State);
-		EnterRule(_localctx, 4, RULE_monom);
+	public ExprContext expr() {
+		return expr(0);
+	}
+
+	private ExprContext expr(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		ExprContext _localctx = new ExprContext(Context, _parentState);
+		ExprContext _prevctx = _localctx;
+		int _startState = 0;
+		EnterRecursionRule(_localctx, 0, RULE_expr, _p);
 		int _la;
 		try {
+			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 41;
+			State = 5;
 			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			do {
+			switch (TokenStream.LA(1)) {
+			case VAR:
 				{
-				{
-				State = 36; Match(VAR);
-				State = 39;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				if (_la==POWER) {
-					{
-					State = 37; Match(POWER);
-					State = 38; Match(NUM);
-					}
-				}
+				_localctx = new VarContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 
+				State = 3; Match(VAR);
 				}
+				break;
+			case NUM:
+				{
+				_localctx = new ConstContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 4; Match(NUM);
 				}
-				State = 43;
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 29;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,5,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					State = 27;
+					ErrorHandler.Sync(this);
+					switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
+					case 1:
+						{
+						_localctx = new AddContext(new ExprContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expr);
+						State = 7;
+						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
+						State = 8; Match(PLUS);
+						State = 9; expr(7);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new SubtractContext(new ExprContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expr);
+						State = 10;
+						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
+						State = 11; Match(MINUS);
+						State = 12; expr(6);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ProdContext(new ExprContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expr);
+						State = 13;
+						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
+						State = 15;
+						ErrorHandler.Sync(this);
+						_la = TokenStream.LA(1);
+						if (_la==PROD) {
+							{
+							State = 14; Match(PROD);
+							}
+						}
+
+						State = 17; expr(5);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new PowerContext(new ExprContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expr);
+						State = 18;
+						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
+						State = 19; Match(POWER);
+						State = 21;
+						ErrorHandler.Sync(this);
+						_la = TokenStream.LA(1);
+						if (_la==OP) {
+							{
+							State = 20; Match(OP);
+							}
+						}
+
+						State = 23; expr(0);
+						State = 25;
+						ErrorHandler.Sync(this);
+						switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
+						case 1:
+							{
+							State = 24; Match(CP);
+							}
+							break;
+						}
+						}
+						break;
+					}
+					} 
+				}
+				State = 31;
 				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			} while ( _la==VAR );
+				_alt = Interpreter.AdaptivePredict(TokenStream,5,Context);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -374,54 +356,61 @@ public partial class PolynomialParser : Parser {
 			ErrorHandler.Recover(this, re);
 		}
 		finally {
-			ExitRule();
+			UnrollRecursionContexts(_parentctx);
 		}
 		return _localctx;
 	}
 
+	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+		switch (ruleIndex) {
+		case 0: return expr_sempred((ExprContext)_localctx, predIndex);
+		}
+		return true;
+	}
+	private bool expr_sempred(ExprContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0: return Precpred(Context, 6);
+		case 1: return Precpred(Context, 5);
+		case 2: return Precpred(Context, 4);
+		case 3: return Precpred(Context, 3);
+		}
+		return true;
+	}
+
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\b', '\x30', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
-		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x3', '\x2', '\x5', '\x2', '\n', 
-		'\n', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\a', 
-		'\x2', '\x10', '\n', '\x2', '\f', '\x2', '\xE', '\x2', '\x13', '\v', '\x2', 
-		'\x3', '\x3', '\x5', '\x3', '\x16', '\n', '\x3', '\x3', '\x3', '\x5', 
-		'\x3', '\x19', '\n', '\x3', '\x3', '\x3', '\x3', '\x3', '\x3', '\x3', 
-		'\x5', '\x3', '\x1E', '\n', '\x3', '\x6', '\x3', ' ', '\n', '\x3', '\r', 
-		'\x3', '\xE', '\x3', '!', '\x3', '\x3', '\x5', '\x3', '%', '\n', '\x3', 
-		'\x3', '\x4', '\x3', '\x4', '\x3', '\x4', '\x5', '\x4', '*', '\n', '\x4', 
-		'\x6', '\x4', ',', '\n', '\x4', '\r', '\x4', '\xE', '\x4', '-', '\x3', 
-		'\x4', '\x2', '\x2', '\x5', '\x2', '\x4', '\x6', '\x2', '\x2', '\x2', 
-		'\x35', '\x2', '\t', '\x3', '\x2', '\x2', '\x2', '\x4', '$', '\x3', '\x2', 
-		'\x2', '\x2', '\x6', '+', '\x3', '\x2', '\x2', '\x2', '\b', '\n', '\a', 
-		'\x6', '\x2', '\x2', '\t', '\b', '\x3', '\x2', '\x2', '\x2', '\t', '\n', 
-		'\x3', '\x2', '\x2', '\x2', '\n', '\v', '\x3', '\x2', '\x2', '\x2', '\v', 
-		'\f', '\x5', '\x4', '\x3', '\x2', '\f', '\x11', '\x3', '\x2', '\x2', '\x2', 
-		'\r', '\xE', '\a', '\x6', '\x2', '\x2', '\xE', '\x10', '\x5', '\x4', '\x3', 
-		'\x2', '\xF', '\r', '\x3', '\x2', '\x2', '\x2', '\x10', '\x13', '\x3', 
-		'\x2', '\x2', '\x2', '\x11', '\xF', '\x3', '\x2', '\x2', '\x2', '\x11', 
-		'\x12', '\x3', '\x2', '\x2', '\x2', '\x12', '\x3', '\x3', '\x2', '\x2', 
-		'\x2', '\x13', '\x11', '\x3', '\x2', '\x2', '\x2', '\x14', '\x16', '\a', 
-		'\x4', '\x2', '\x2', '\x15', '\x14', '\x3', '\x2', '\x2', '\x2', '\x15', 
-		'\x16', '\x3', '\x2', '\x2', '\x2', '\x16', '\x18', '\x3', '\x2', '\x2', 
-		'\x2', '\x17', '\x19', '\a', '\x3', '\x2', '\x2', '\x18', '\x17', '\x3', 
-		'\x2', '\x2', '\x2', '\x18', '\x19', '\x3', '\x2', '\x2', '\x2', '\x19', 
-		'\x1F', '\x3', '\x2', '\x2', '\x2', '\x1A', '\x1D', '\a', '\x5', '\x2', 
-		'\x2', '\x1B', '\x1C', '\a', '\a', '\x2', '\x2', '\x1C', '\x1E', '\a', 
-		'\x4', '\x2', '\x2', '\x1D', '\x1B', '\x3', '\x2', '\x2', '\x2', '\x1D', 
-		'\x1E', '\x3', '\x2', '\x2', '\x2', '\x1E', ' ', '\x3', '\x2', '\x2', 
-		'\x2', '\x1F', '\x1A', '\x3', '\x2', '\x2', '\x2', ' ', '!', '\x3', '\x2', 
-		'\x2', '\x2', '!', '\x1F', '\x3', '\x2', '\x2', '\x2', '!', '\"', '\x3', 
-		'\x2', '\x2', '\x2', '\"', '%', '\x3', '\x2', '\x2', '\x2', '#', '%', 
-		'\a', '\x4', '\x2', '\x2', '$', '\x15', '\x3', '\x2', '\x2', '\x2', '$', 
-		'#', '\x3', '\x2', '\x2', '\x2', '%', '\x5', '\x3', '\x2', '\x2', '\x2', 
-		'&', ')', '\a', '\x5', '\x2', '\x2', '\'', '(', '\a', '\a', '\x2', '\x2', 
-		'(', '*', '\a', '\x4', '\x2', '\x2', ')', '\'', '\x3', '\x2', '\x2', '\x2', 
-		')', '*', '\x3', '\x2', '\x2', '\x2', '*', ',', '\x3', '\x2', '\x2', '\x2', 
-		'+', '&', '\x3', '\x2', '\x2', '\x2', ',', '-', '\x3', '\x2', '\x2', '\x2', 
-		'-', '+', '\x3', '\x2', '\x2', '\x2', '-', '.', '\x3', '\x2', '\x2', '\x2', 
-		'.', '\a', '\x3', '\x2', '\x2', '\x2', '\v', '\t', '\x11', '\x15', '\x18', 
-		'\x1D', '!', '$', ')', '-',
+		'\x5964', '\x3', '\v', '#', '\x4', '\x2', '\t', '\x2', '\x3', '\x2', '\x3', 
+		'\x2', '\x3', '\x2', '\x5', '\x2', '\b', '\n', '\x2', '\x3', '\x2', '\x3', 
+		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', 
+		'\x2', '\x3', '\x2', '\x5', '\x2', '\x12', '\n', '\x2', '\x3', '\x2', 
+		'\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x5', '\x2', '\x18', '\n', 
+		'\x2', '\x3', '\x2', '\x3', '\x2', '\x5', '\x2', '\x1C', '\n', '\x2', 
+		'\a', '\x2', '\x1E', '\n', '\x2', '\f', '\x2', '\xE', '\x2', '!', '\v', 
+		'\x2', '\x3', '\x2', '\x2', '\x3', '\x2', '\x3', '\x2', '\x2', '\x2', 
+		'\x2', ')', '\x2', '\a', '\x3', '\x2', '\x2', '\x2', '\x4', '\x5', '\b', 
+		'\x2', '\x1', '\x2', '\x5', '\b', '\a', '\x6', '\x2', '\x2', '\x6', '\b', 
+		'\a', '\x5', '\x2', '\x2', '\a', '\x4', '\x3', '\x2', '\x2', '\x2', '\a', 
+		'\x6', '\x3', '\x2', '\x2', '\x2', '\b', '\x1F', '\x3', '\x2', '\x2', 
+		'\x2', '\t', '\n', '\f', '\b', '\x2', '\x2', '\n', '\v', '\a', '\a', '\x2', 
+		'\x2', '\v', '\x1E', '\x5', '\x2', '\x2', '\t', '\f', '\r', '\f', '\a', 
+		'\x2', '\x2', '\r', '\xE', '\a', '\b', '\x2', '\x2', '\xE', '\x1E', '\x5', 
+		'\x2', '\x2', '\b', '\xF', '\x11', '\f', '\x6', '\x2', '\x2', '\x10', 
+		'\x12', '\a', '\t', '\x2', '\x2', '\x11', '\x10', '\x3', '\x2', '\x2', 
+		'\x2', '\x11', '\x12', '\x3', '\x2', '\x2', '\x2', '\x12', '\x13', '\x3', 
+		'\x2', '\x2', '\x2', '\x13', '\x1E', '\x5', '\x2', '\x2', '\a', '\x14', 
+		'\x15', '\f', '\x5', '\x2', '\x2', '\x15', '\x17', '\a', '\n', '\x2', 
+		'\x2', '\x16', '\x18', '\a', '\x4', '\x2', '\x2', '\x17', '\x16', '\x3', 
+		'\x2', '\x2', '\x2', '\x17', '\x18', '\x3', '\x2', '\x2', '\x2', '\x18', 
+		'\x19', '\x3', '\x2', '\x2', '\x2', '\x19', '\x1B', '\x5', '\x2', '\x2', 
+		'\x2', '\x1A', '\x1C', '\a', '\x3', '\x2', '\x2', '\x1B', '\x1A', '\x3', 
+		'\x2', '\x2', '\x2', '\x1B', '\x1C', '\x3', '\x2', '\x2', '\x2', '\x1C', 
+		'\x1E', '\x3', '\x2', '\x2', '\x2', '\x1D', '\t', '\x3', '\x2', '\x2', 
+		'\x2', '\x1D', '\f', '\x3', '\x2', '\x2', '\x2', '\x1D', '\xF', '\x3', 
+		'\x2', '\x2', '\x2', '\x1D', '\x14', '\x3', '\x2', '\x2', '\x2', '\x1E', 
+		'!', '\x3', '\x2', '\x2', '\x2', '\x1F', '\x1D', '\x3', '\x2', '\x2', 
+		'\x2', '\x1F', ' ', '\x3', '\x2', '\x2', '\x2', ' ', '\x3', '\x3', '\x2', 
+		'\x2', '\x2', '!', '\x1F', '\x3', '\x2', '\x2', '\x2', '\b', '\a', '\x11', 
+		'\x17', '\x1B', '\x1D', '\x1F',
 	};
 
 	public static readonly ATN _ATN =

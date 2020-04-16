@@ -32,30 +32,45 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPolynomialVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by the <c>monomialSum</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// Visit a parse tree produced by the <c>add</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context);
+	Result VisitAdd([NotNull] PolynomialParser.AddContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>realMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// Visit a parse tree produced by the <c>prod</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitRealMonomial([NotNull] PolynomialParser.RealMonomialContext context);
+	Result VisitProd([NotNull] PolynomialParser.ProdContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>const</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitConst([NotNull] PolynomialParser.ConstContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PolynomialParser.monom"/>.
+	/// Visit a parse tree produced by the <c>var</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMonom([NotNull] PolynomialParser.MonomContext context);
+	Result VisitVar([NotNull] PolynomialParser.VarContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>subtract</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSubtract([NotNull] PolynomialParser.SubtractContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>power</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPower([NotNull] PolynomialParser.PowerContext context);
 }

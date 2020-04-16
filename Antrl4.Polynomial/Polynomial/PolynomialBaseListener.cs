@@ -35,59 +35,89 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class PolynomialBaseListener : IPolynomialListener {
 	/// <summary>
-	/// Enter a parse tree produced by the <c>monomialSum</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// Enter a parse tree produced by the <c>add</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMonomialSum([NotNull] PolynomialParser.MonomialSumContext context) { }
+	public virtual void EnterAdd([NotNull] PolynomialParser.AddContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>monomialSum</c>
-	/// labeled alternative in <see cref="PolynomialParser.polynomial"/>.
+	/// Exit a parse tree produced by the <c>add</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMonomialSum([NotNull] PolynomialParser.MonomialSumContext context) { }
+	public virtual void ExitAdd([NotNull] PolynomialParser.AddContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>realMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// Enter a parse tree produced by the <c>prod</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterRealMonomial([NotNull] PolynomialParser.RealMonomialContext context) { }
+	public virtual void EnterProd([NotNull] PolynomialParser.ProdContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>realMonomial</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// Exit a parse tree produced by the <c>prod</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitRealMonomial([NotNull] PolynomialParser.RealMonomialContext context) { }
+	public virtual void ExitProd([NotNull] PolynomialParser.ProdContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>const</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void EnterConst([NotNull] PolynomialParser.ConstContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by the <c>const</c>
-	/// labeled alternative in <see cref="PolynomialParser.monomial"/>.
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConst([NotNull] PolynomialParser.ConstContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PolynomialParser.monom"/>.
+	/// Enter a parse tree produced by the <c>var</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMonom([NotNull] PolynomialParser.MonomContext context) { }
+	public virtual void EnterVar([NotNull] PolynomialParser.VarContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PolynomialParser.monom"/>.
+	/// Exit a parse tree produced by the <c>var</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMonom([NotNull] PolynomialParser.MonomContext context) { }
+	public virtual void ExitVar([NotNull] PolynomialParser.VarContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>subtract</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSubtract([NotNull] PolynomialParser.SubtractContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>subtract</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSubtract([NotNull] PolynomialParser.SubtractContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>power</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPower([NotNull] PolynomialParser.PowerContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>power</c>
+	/// labeled alternative in <see cref="PolynomialParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPower([NotNull] PolynomialParser.PowerContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

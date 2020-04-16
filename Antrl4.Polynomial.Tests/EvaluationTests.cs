@@ -65,5 +65,35 @@ namespace Antrl4.Polynomial.Tests
             // Assert
             Assert.Equal(16, result);
         }
+
+        [Fact(DisplayName = "Test product node")]
+        public void TestProductNode()
+        {
+            // Arrange
+            var node1 = new ConstNode(2);
+            var node2 = new ConstNode(4);
+            var powerNode = new ProductNode(node1, node2);
+            var dictionary = new Dictionary<char, double>() { { 'x', 5 } };
+
+            // Act
+            var result = powerNode.Eval(dictionary);
+
+            // Assert
+            Assert.Equal(8, result);
+        }
+
+        [Fact(DisplayName = "Test variable node")]
+        public void TestVariableNode()
+        {
+            // Arrange
+            var variableNode = new VariableNode('x');
+            var dictionary = new Dictionary<char, double>() { { 'x', 5 } };
+
+            // Act
+            var result = variableNode.Eval(dictionary);
+
+            // Assert
+            Assert.Equal(5, result);
+        }
     }
 }
