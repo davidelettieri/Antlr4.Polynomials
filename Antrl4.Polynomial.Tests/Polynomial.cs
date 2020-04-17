@@ -47,7 +47,7 @@ namespace Antrl4.Polynomial.Tests
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x }, { 'y', y } };
-            Assert.Equal(result, evaluator.Eval(d));
+            Assert.Equal(result, evaluator.Eval(d), 15);
         }
 
         [Theory(DisplayName = "Test evaluation of polynomial with polynomial exponent")]
@@ -57,17 +57,18 @@ namespace Antrl4.Polynomial.Tests
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x }, { 'y', y } };
-            Assert.Equal(result, evaluator.Eval(d));
+            Assert.Equal(result, evaluator.Eval(d), 15);
         }
 
         [Theory(DisplayName = "Other tests")]
         [InlineData("(x+2)^2", 2, 16)]
         [InlineData("(x-1)^10", 1, 0)]
+        [InlineData("(x-0.1)^2", 0, 0.01)]
         public void OtherTest(string poli, double x, double result)
         {
             var evaluator = new Evaluator(poli);
             var d = new Dictionary<char, double>() { { 'x', x } };
-            Assert.Equal(result, evaluator.Eval(d));
+            Assert.Equal(result, evaluator.Eval(d),15);
         }
     }
 }
